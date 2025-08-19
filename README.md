@@ -18,12 +18,6 @@ A modern, web-based drum machine built with React that brings the power of profe
 - **Tempo Control**: Adjustable BPM from 40-240 with precise control
 - **Volume & Pitch Control**: Individual track mixing and sound shaping
 
-### 🎨 Theme System
-- **6 Unique Themes**: Default, Underground, Forest, Ocean, R&B, and Rock
-- **Dynamic Styling**: Complete UI transformation with custom colors, fonts, and effects
-- **Persistent Settings**: Theme preferences saved in localStorage
-- **Professional Typography**: Inter font family for modern, readable interface
-
 ### 🎵 Demo Patterns
 - **8 Professional Patterns**: Hip-Hop, Groove, EDM, Boom-Bap, Afrobeat, West Coast Bounce, Lo-Fi Chill
 - **One-Click Loading**: Instant pattern loading with optimized BPM settings
