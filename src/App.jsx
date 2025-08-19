@@ -30,7 +30,7 @@ export default function App() {
   const kitOptions = ["kit1", "kit2", "kit3", "kit4"];
   
   // Demo options
-  const demoOptions = ["No Demo", "Demo 1", "Demo 2", "Demo 3", "Demo 4", "Demo 5"];
+  const demoOptions = ["No Demo", "Hip-Hop", "Groove", "EDM", "Boom-Bap", "Demo 5"];
 
   // Initialize audio manager
   useEffect(() => {
@@ -141,6 +141,70 @@ export default function App() {
     );
   };
 
+  // Demo patterns
+  const loadDemo = (demoName) => {
+    switch (demoName) {
+      case "Hip-Hop":
+        // Hip-Hop pattern
+        // Kick: steps 1, 7, 11 (indices 0, 6, 10)
+        // Snare: steps 5, 13 (indices 4, 12)
+        // Hi-Hats: every step with variation
+        setTracks([
+          { id: "kick", label: "Kick", steps: [1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0], volume: 75, pitch: 50 },
+          { id: "snare", label: "Snare", steps: [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0], volume: 75, pitch: 50 },
+          { id: "openhat", label: "Open hat", steps: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], volume: 60, pitch: 50 },
+          { id: "closedhat", label: "Closed hat", steps: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], volume: 70, pitch: 50 },
+          { id: "cowbell", label: "Cowbell", steps: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], volume: 75, pitch: 50 },
+        ]);
+        break;
+      case "Groove":
+        // Groove pattern
+        // Kick: steps 1, 9 (indices 0, 8)
+        // Snare: steps 5, 13 (indices 4, 12)
+        // Cowbell: steps 1, 4, 7, 11, 15 (indices 0, 3, 6, 10, 14)
+        // Closed Hat: steps 3, 6, 10, 14 (indices 2, 5, 9, 13)
+        setTracks([
+          { id: "kick", label: "Kick", steps: [1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0], volume: 75, pitch: 50 },
+          { id: "snare", label: "Snare", steps: [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0], volume: 75, pitch: 50 },
+          { id: "openhat", label: "Open hat", steps: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], volume: 60, pitch: 50 },
+          { id: "closedhat", label: "Closed hat", steps: [0,0,1,0,0,1,0,0,0,1,0,0,0,1,0,0], volume: 70, pitch: 50 },
+          { id: "cowbell", label: "Cowbell", steps: [1,0,0,1,0,0,1,0,0,0,1,0,0,0,1,0], volume: 75, pitch: 50 },
+        ]);
+        break;
+      case "EDM":
+        // EDM pattern
+        // Kick: steps 1, 5, 9, 13 (indices 0, 4, 8, 12)
+        // Snare/Clap: steps 5, 13 (indices 4, 12)
+        // Open Hat: steps 3, 7, 11, 15 (indices 2, 6, 10, 14)
+        // Closed Hat: every offbeat (2, 4, 6, 8, 10, 12, 14, 16) (indices 1, 3, 5, 7, 9, 11, 13, 15)
+        setTracks([
+          { id: "kick", label: "Kick", steps: [1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0], volume: 80, pitch: 50 },
+          { id: "snare", label: "Snare", steps: [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0], volume: 75, pitch: 50 },
+          { id: "openhat", label: "Open hat", steps: [0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0], volume: 70, pitch: 50 },
+          { id: "closedhat", label: "Closed hat", steps: [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1], volume: 65, pitch: 50 },
+          { id: "cowbell", label: "Cowbell", steps: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], volume: 75, pitch: 50 },
+        ]);
+        break;
+      case "Boom-Bap":
+        // Boom-Bap pattern
+        // Kick: steps 1, 7, 11 (indices 0, 6, 10)
+        // Snare: steps 5, 13 (indices 4, 12)
+        // Open Hat: step 12 (index 11)
+        // Closed Hat: steps 2,3,4,5,6,7,8,10,12,13,16 (indices 1,2,3,4,5,6,7,9,11,12,15)
+        setTracks([
+          { id: "kick", label: "Kick", steps: [1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0], volume: 75, pitch: 50 },
+          { id: "snare", label: "Snare", steps: [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0], volume: 75, pitch: 50 },
+          { id: "openhat", label: "Open hat", steps: [0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0], volume: 70, pitch: 50 },
+          { id: "closedhat", label: "Closed hat", steps: [0,1,1,1,1,1,1,1,0,1,0,1,1,0,0,1], volume: 65, pitch: 50 },
+          { id: "cowbell", label: "Cowbell", steps: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], volume: 75, pitch: 50 },
+        ]);
+        break;
+      default:
+        // Clear pattern
+        setTracks(prev => prev.map(t => ({ ...t, steps: emptyRow() })));
+    }
+  };
+
   return (
     <div 
       className="min-h-screen w-full flex items-center justify-center p-4"
@@ -177,7 +241,10 @@ export default function App() {
             selectedKit={selectedKit}
             selectedDemo={selectedDemo}
             onKitChange={setSelectedKit}
-            onDemoChange={setSelectedDemo}
+            onDemoChange={(demo) => {
+              setSelectedDemo(demo);
+              loadDemo(demo);
+            }}
             kitOptions={kitOptions}
             demoOptions={demoOptions}
           />
