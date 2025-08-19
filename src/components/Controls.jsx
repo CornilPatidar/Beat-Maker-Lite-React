@@ -142,7 +142,12 @@ function Controls({
           className={`px-3 py-1 text-sm ${currentThemeData.textSecondary} bg-neutral-700 border ${currentThemeData.borderColor} rounded-md outline-none focus:border-${currentThemeData.textPrimary.replace('text-', '')}`}
         >
           {kitOptions.map((option) => (
-            <option key={option} value={option} className="bg-neutral-700 text-gray-300">
+            <option 
+              key={option} 
+              value={option} 
+              disabled={option === "Coming Soon"}
+              className={`bg-neutral-700 ${option === "Coming Soon" ? "text-gray-500" : "text-gray-300"}`}
+            >
               {option}
             </option>
           ))}

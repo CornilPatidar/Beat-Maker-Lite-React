@@ -33,7 +33,7 @@ export default function App() {
   const [selectedDemo, setSelectedDemo] = useState("No Demo");
 
   // Kit options
-  const kitOptions = ["kit1", "kit2", "kit3", "kit4"];
+  const kitOptions = ["kit1", "Coming Soon"];
   
   // Demo options
   const demoOptions = ["No Demo", "Hip-Hop", "Groove", "EDM", "Boom-Bap", "Afrobeat", "West Coast Bounce", "Lo-Fi Chill"];
@@ -483,7 +483,12 @@ export default function App() {
             onRandomize={onRandomize}
             selectedKit={selectedKit}
             selectedDemo={selectedDemo}
-            onKitChange={setSelectedKit}
+            onKitChange={(kit) => {
+              if (kit === "kit1") {
+                setSelectedKit(kit);
+              }
+              // Ignore "Coming Soon" selections
+            }}
             onDemoChange={(demo) => {
               setSelectedDemo(demo);
               loadDemo(demo);
