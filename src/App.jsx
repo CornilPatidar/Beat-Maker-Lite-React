@@ -54,20 +54,39 @@ export default function App() {
       intervalRef.current = setInterval(() => {
         setCurrentStep(prev => {
           const next = prev + 1;
+          const currentStep = next >= 16 ? 0 : next;
           
           // Play sounds for active steps
-          if (next < 16) {
-            tracks.forEach((track, trackIndex) => {
-              if (track.steps[next]) {
-                const soundName = track.id.toLowerCase().replace(' ', '-');
-                const volume = track.volume / 100;
-                const pitch = 0.5 + (track.pitch / 100) * 1.5; // Pitch range: 0.5 to 2.0
-                audioManager.playSound(soundName, volume, pitch);
+          tracks.forEach((track, trackIndex) => {
+            if (track.steps[currentStep]) {
+              // Map track IDs to sound names
+              let soundName;
+              switch (track.id) {
+                case 'kick':
+                  soundName = 'kick';
+                  break;
+                case 'snare':
+                  soundName = 'snare';
+                  break;
+                case 'openhat':
+                  soundName = 'open-hat';
+                  break;
+                case 'closedhat':
+                  soundName = 'closed-hat';
+                  break;
+                case 'cowbell':
+                  soundName = 'cowbell';
+                  break;
+                default:
+                  soundName = track.id.toLowerCase().replace(' ', '-');
               }
-            });
-          }
+              const volume = track.volume / 100;
+              const pitch = 0.5 + (track.pitch / 100) * 1.5; // Pitch range: 0.5 to 2.0
+              audioManager.playSound(soundName, volume, pitch);
+            }
+          });
           
-          return next >= 16 ? 0 : next;
+          return currentStep;
         });
       }, stepInterval);
     } else {

@@ -69,10 +69,11 @@ class AudioManager {
   // Load all sounds for a kit
   async loadKit(kitName) {
     const kitSounds = {
-      'kick': `/sounds/${kitName}/kick.wav`,
-      'snare': `/sounds/${kitName}/snare.wav`,
-      'open-hat': `/sounds/${kitName}/open-hat.wav`,
-      'closed-hat': `/sounds/${kitName}/closed-hat.wav`,
+      'kick': new URL(`../assets/sounds/${kitName}/kick.wav`, import.meta.url).href,
+      'snare': new URL(`../assets/sounds/${kitName}/snare.wav`, import.meta.url).href,
+      'open-hat': new URL(`../assets/sounds/${kitName}/openhat.wav`, import.meta.url).href,
+      'closed-hat': new URL(`../assets/sounds/${kitName}/closedhat.wav`, import.meta.url).href,
+      'cowbell': new URL(`../assets/sounds/${kitName}/cowbell.wav`, import.meta.url).href,
     };
 
     const loadPromises = Object.entries(kitSounds).map(([name, url]) => 
