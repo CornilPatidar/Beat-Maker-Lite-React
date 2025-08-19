@@ -62,36 +62,9 @@ npm run build
 npm run preview
 ```
 
-## 🏗️ Project Architecture
+## 🏗️ Architecture
 
-### Core Components
-- **App.jsx**: Main application logic and state management
-- **Controls.jsx**: Transport controls and settings interface
-- **SequencerGrid.jsx**: 16-step sequencer visualization
-- **TrackRow.jsx**: Individual drum track with sliders
-- **AudioManager.js**: Web Audio API integration
-- **ThemeContext.jsx**: Theme system and state management
-
-### Key Technologies
-- **React 18**: Modern React with hooks and context
-- **Vite**: Fast build tool and development server
-- **Tailwind CSS**: Utility-first CSS framework
-- **Web Audio API**: Real-time audio processing
-- **Google Fonts**: Professional typography (Inter, Audiowide, JetBrains Mono)
-
-## 🎯 Core Concepts
-
-### 1. **Sequencer Logic**
-The heart of the application is a 16-step sequencer that operates on a grid system. Each step represents a 16th note, allowing for precise rhythmic programming. The sequencer uses a timing system based on BPM calculations to ensure accurate playback.
-
-### 2. **Audio Management**
-Built with the Web Audio API for real-time audio processing. The system loads audio samples dynamically and applies volume/pitch modifications in real-time. Audio context management ensures compatibility with modern browser autoplay policies.
-
-### 3. **Theme System**
-A comprehensive theming solution using React Context and CSS-in-JS. Each theme includes complete color schemes, typography, and interactive elements. The system supports dynamic slider styling and persistent user preferences.
-
-### 4. **Pattern Generation**
-Advanced pattern randomization using curated professional drum patterns. The system applies intelligent variation while maintaining musical coherence and genre-appropriate structures.
+Built with **React 18**, **Vite**, **Tailwind CSS**, and **Web Audio API**. Features a modular component architecture with centralized state management using React Context for themes and audio processing.
 
 ## 🛠️ Technical Challenges
 
@@ -130,40 +103,13 @@ The project is planned for a major upgrade to [Tone.js](https://tonejs.github.io
 ### **Additional Features Planned**
 - **More Drum Kits**: Additional sample packs and sound libraries
 - **Pattern Export**: Save and share custom patterns
-- **Collaboration**: Real-time collaborative beat-making
-- **Mobile App**: Native mobile application
 - **Advanced Sequencing**: 32-step and 64-step sequencer modes
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
-
-### Development Guidelines
-- Follow React best practices and hooks patterns
-- Maintain consistent code formatting with Prettier
-- Write meaningful commit messages
-- Test across different browsers and devices
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 👨‍💻 Author
 
 **Cornil Patidar**
-- GitHub: [@yourusername](https://github.com/yourusername)
 - Live Demo: [https://beat-maker-lite.vercel.app/](https://beat-maker-lite.vercel.app/)
-
-## 🙏 Acknowledgments
-
-- **Web Audio API**: For real-time audio processing capabilities
-- **React Team**: For the amazing framework
-- **Tailwind CSS**: For the utility-first CSS framework
-- **Google Fonts**: For the professional typography
-- **Vercel**: For seamless deployment and hosting
 
 ---
 
 **🎵 Made with ❤️ for the music production community**
-
-*Beat Maker Lite - Where creativity meets technology*
