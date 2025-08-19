@@ -1,55 +1,42 @@
-### **Additional Features Planned**
-- **More Drum Kits**: Additional sample packs and sound libraries
+# 🎵 Beat Maker Lite
+
+A modern, web-based drum machine built with React. Create beats with an intuitive 16-step sequencer and multiple themes.
+
+**🌐 Live Demo:** [https://beat-maker-lite.vercel.app/](https://beat-maker-lite.vercel.app/)
+
+## ✨ Features
+
+- **16-Step Sequencer**: Classic drum machine workflow
+- **5 Drum Tracks**: Kick, Snare, Open Hat, Closed Hat, Cowbell
+- **6 Themes**: Default, Underground, Forest, Ocean, R&B, Rock
+- **Professional Patterns**: 8 demo patterns + AI-powered randomize
+- **Real-time Audio**: Web Audio API with volume/pitch control
+- **Responsive Design**: Works on desktop and mobile
+
+## 🚀 Quick Start
+
+```bash
+git clone https://github.com/yourusername/Beat-Maker-Lite-React.git
+cd Beat-Maker-Lite-React
+npm install
+npm run dev
+```
+
+## 🛠️ Built With
+
+- **React 18** + **Vite** + **Tailwind CSS**
+- **Web Audio API** for real-time audio processing
+- **React Context** for theme management
+
+## 🎵 Coming Soon
+
+- **Tone.js Integration**: Advanced synthesis and effects
+- **More Drum Kits**: Additional sample packs
 - **Pattern Export**: Save and share custom patterns
-- **Collaboration**: Real-time collaborative beat-making
-- **Mobile App**: Native mobile application
-- **Advanced Sequencing**: 32-step and 64-step sequencer modes
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
-
-### Development Guidelines
-- Follow React best practices and hooks patterns
-- Maintain consistent code formatting with Prettier
-- Write meaningful commit messages
-- Test across different browsers and devices
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 👨‍💻 Author
 
-**Cornil Patidar**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- Live Demo: [https://beat-maker-lite.vercel.app/](https://beat-maker-lite.vercel.app/)
-
-## 🙏 Acknowledgments
-
-- **Web Audio API**: For real-time audio processing capabilities
-- **React Team**: For the amazing framework
-- **Tailwind CSS**: For the utility-first CSS framework
-- **Google Fonts**: For the professional typography
-- **Vercel**: For seamless deployment and hosting
-
----
-
-**🎵 Made with ❤️ for the music production community**
-
-*Beat Maker Lite - Where creativity meets technology*
-
-->
-
-### **Additional Features Planned**
-- **More Drum Kits**: Additional sample packs and sound libraries
-- **Pattern Export**: Save and share custom patterns
-- **Advanced Sequencing**: 32-step and 64-step sequencer modes
-
-## 👨‍💻 Author
-
-**Cornil Patidar**
-- Live Demo: [https://beat-maker-lite.vercel.app/](https://beat-maker-lite.vercel.app/)
+**Cornil Patidar** - [Live Demo](https://beat-maker-lite.vercel.app/)
 
 ---
 
