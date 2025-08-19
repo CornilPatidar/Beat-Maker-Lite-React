@@ -96,20 +96,20 @@ export const themes = {
   rock: {
     name: "Rock",
     icon: "🎸",
-    background: "linear-gradient(135deg, #2a0a0a 0%, #3a1a1a 50%, #4a2a2a 100%)",
-    cardBg: "bg-red-900/95",
-    borderColor: "border-red-700",
-    headerBg: "bg-red-800/90",
+    background: "linear-gradient(135deg, #1a0a0a 0%, #2a1a1a 50%, #3a2a2a 100%)",
+    cardBg: "bg-neutral-900/95",
+    borderColor: "border-red-800",
+    headerBg: "bg-neutral-800/90",
     textPrimary: "text-red-400",
-    textSecondary: "text-red-200",
+    textSecondary: "text-gray-300",
     buttonBg: "bg-red-600",
     buttonHover: "hover:bg-red-700",
-    sliderTrack: "#3a1a1a",
-    sliderThumb: "#ff4444",
-    sliderThumbBorder: "#cc3333",
+    sliderTrack: "#2a1a1a",
+    sliderThumb: "#dc2626",
+    sliderThumbBorder: "#b91c1c",
     titleFont: "Audiowide", // Logo font - keep as is
-    titleGradient: "linear-gradient(135deg, #ff4444 0%, #cc3333 50%, #aa2222 100%)",
-    titleGlow: "rgba(255, 68, 68, 0.6)"
+    titleGradient: "linear-gradient(135deg, #dc2626 0%, #b91c1c 50%, #991b1b 100%)",
+    titleGlow: "rgba(220, 38, 38, 0.6)"
   }
 };
 
