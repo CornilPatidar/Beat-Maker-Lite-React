@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import audioManager from "./AudioManager.js";
+import { useTheme } from "./ThemeContext.jsx";
 
 /**
  * Controls Component - The transport/control panel for the drum machine
@@ -24,6 +25,9 @@ function Controls({
   kitOptions,       // Array: available kit options
   demoOptions,      // Array: available demo options
 }) {
+  const { currentTheme, themes } = useTheme();
+  const currentThemeData = themes[currentTheme];
+
   const handleBpmIncrement = () => {
     if (bpm < 240) {
       onBpmChange(bpm + 1);
@@ -73,11 +77,11 @@ function Controls({
 
   return (
     // Main container: horizontal layout with dark styling
-    <div className="flex items-center gap-3 p-4 bg-neutral-800 rounded-xl border border-neutral-700 mb-6">
+    <div className={`flex items-center gap-3 p-4 ${currentThemeData.headerBg} rounded-xl border ${currentThemeData.borderColor} mb-6`}>
       {/* Play/Stop Button - Changes text based on current state */}
       <button
         onClick={handleTogglePlay}
-        className="px-4 py-2 rounded-md bg-cyan-500 hover:bg-cyan-400 text-black font-semibold transition-colors"
+        className={`px-4 py-2 rounded-md ${currentThemeData.buttonBg} ${currentThemeData.buttonHover} text-white font-semibold transition-colors`}
       >
         {/* Conditional text: Show "Stop" when playing, "Play" when stopped */}
         {isPlaying ? "Stop" : "Play"}
@@ -86,15 +90,15 @@ function Controls({
       {/* BPM Control Section - Tempo adjustment with spin buttons */}
       <div className="flex items-center gap-2">
         {/* Label for the BPM control */}
-        <span className="text-sm text-gray-300">Tempo</span>
+        <span className={`text-sm ${currentThemeData.textSecondary}`}>Tempo</span>
         
         {/* Spin button container */}
-        <div className="flex items-center border border-neutral-600 rounded-md bg-neutral-700">
+        <div className={`flex items-center border ${currentThemeData.borderColor} rounded-md bg-neutral-700`}>
           {/* Decrement button */}
           <button
             onClick={handleBpmDecrement}
             disabled={bpm <= 40}
-            className="px-2 py-1 text-gray-300 hover:text-white hover:bg-neutral-600 disabled:text-gray-500 disabled:hover:bg-neutral-700 transition-colors"
+            className={`px-2 py-1 ${currentThemeData.textSecondary} hover:text-white hover:bg-neutral-600 disabled:text-gray-500 disabled:hover:bg-neutral-700 transition-colors`}
             title="Decrease tempo"
           >
             ▼
@@ -110,7 +114,7 @@ function Controls({
             onChange={handleBpmInputChange}
             onBlur={handleBpmInputBlur}
             onKeyDown={handleBpmInputKeyDown}
-            className="w-16 px-2 py-1 text-center text-gray-300 bg-transparent border-none outline-none"
+            className={`w-16 px-2 py-1 text-center ${currentThemeData.textSecondary} bg-transparent border-none outline-none`}
             title="Tempo (40-240 BPM)"
           />
           
@@ -118,7 +122,7 @@ function Controls({
           <button
             onClick={handleBpmIncrement}
             disabled={bpm >= 240}
-            className="px-2 py-1 text-gray-300 hover:text-white hover:bg-neutral-600 disabled:text-gray-500 disabled:hover:bg-neutral-700 transition-colors"
+            className={`px-2 py-1 ${currentThemeData.textSecondary} hover:text-white hover:bg-neutral-600 disabled:text-gray-500 disabled:hover:bg-neutral-700 transition-colors`}
             title="Increase tempo"
           >
             ▲
@@ -126,16 +130,16 @@ function Controls({
         </div>
         
         {/* BPM label */}
-        <span className="text-sm text-gray-400">BPM</span>
+        <span className={`text-sm ${currentThemeData.textSecondary}`}>BPM</span>
       </div>
 
       {/* Kit Selection */}
       <div className="flex items-center gap-2">
-        <span className="text-sm text-gray-300">Kit</span>
+        <span className={`text-sm ${currentThemeData.textSecondary}`}>Kit</span>
         <select
           value={selectedKit}
           onChange={(e) => onKitChange(e.target.value)}
-          className="px-3 py-1 text-sm text-gray-300 bg-neutral-700 border border-neutral-600 rounded-md outline-none focus:border-cyan-400"
+          className={`px-3 py-1 text-sm ${currentThemeData.textSecondary} bg-neutral-700 border ${currentThemeData.borderColor} rounded-md outline-none focus:border-${currentThemeData.textPrimary.replace('text-', '')}`}
         >
           {kitOptions.map((option) => (
             <option key={option} value={option} className="bg-neutral-700 text-gray-300">
@@ -147,11 +151,11 @@ function Controls({
 
       {/* Demos Selection */}
       <div className="flex items-center gap-2">
-        <span className="text-sm text-gray-300">Demos</span>
+        <span className={`text-sm ${currentThemeData.textSecondary}`}>Demos</span>
         <select
           value={selectedDemo}
           onChange={(e) => onDemoChange(e.target.value)}
-          className="px-3 py-1 text-sm text-gray-300 bg-neutral-700 border border-neutral-600 rounded-md outline-none focus:border-cyan-400"
+          className={`px-3 py-1 text-sm ${currentThemeData.textSecondary} bg-neutral-700 border ${currentThemeData.borderColor} rounded-md outline-none focus:border-${currentThemeData.textPrimary.replace('text-', '')}`}
         >
           {demoOptions.map((option) => (
             <option key={option} value={option} className="bg-neutral-700 text-gray-300">
@@ -164,7 +168,7 @@ function Controls({
       {/* Clear Button - Removes all drum hits from all tracks */}
       <button
         onClick={onClear}
-        className="px-3 py-2 rounded-md bg-neutral-700 hover:bg-neutral-600 text-gray-300 border border-neutral-600 transition-colors"
+        className={`px-3 py-2 rounded-md bg-neutral-700 hover:bg-neutral-600 ${currentThemeData.textSecondary} border ${currentThemeData.borderColor} transition-colors`}
       >
         Clear
       </button>
@@ -172,7 +176,7 @@ function Controls({
       {/* Randomize Button - Adds random drum hits to create patterns */}
       <button
         onClick={onRandomize}
-        className="px-3 py-2 rounded-md bg-neutral-700 hover:bg-neutral-600 text-gray-300 border border-neutral-600 transition-colors"
+        className={`px-3 py-2 rounded-md bg-neutral-700 hover:bg-neutral-600 ${currentThemeData.textSecondary} border ${currentThemeData.borderColor} transition-colors`}
       >
         Randomize
       </button>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { COLS, GAP, MIN_STEP, MAX_STEP, LABEL_W, SLIDER_PANEL_W, COLORS } from "./constants.js";
+import { useTheme } from "./ThemeContext.jsx";
 
 /**
  * Row uses CSS vars from parent:
@@ -19,6 +20,8 @@ function TrackRow({
   onPitchChange,
   containerWidth,
 }) {
+  const { currentTheme, themes } = useTheme();
+  const currentThemeData = themes[currentTheme];
   const [stepPx, setStepPx] = useState(MAX_STEP);
 
   // Compute square size so the 16 columns + gaps fit without scrolling
@@ -45,7 +48,7 @@ function TrackRow({
     <div className="flex items-center mb-2">
       {/* Left label */}
       <div
-        className="text-right text-sm font-medium text-gray-300 mr-4"
+        className={`text-right text-sm font-medium ${currentThemeData.textSecondary} mr-4`}
         style={{ width: LABEL_W }}
       >
         {label}
@@ -70,20 +73,23 @@ function TrackRow({
         const beatGroup = Math.floor(stepIndex / 4);
         const isGroupB = beatGroup % 2 === 1;
 
-        const bg = active ? COLORS.active : (isGroupB ? COLORS.inactiveB : COLORS.inactiveA);
+        // Use theme colors for tiles
+        const bg = active ? currentThemeData.sliderThumb : (isGroupB ? "#8f8d8d" : "#F8FAFC");
+        const borderColor = currentThemeData.sliderThumbBorder;
+        const playheadColor = currentThemeData.sliderThumb;
 
         const style = {
             width: "var(--step)",
             height: "var(--step)",   // true square
             borderRadius: 4,         // small, not pill
-            border: `1px solid ${COLORS.border}`,
+            border: `1px solid ${borderColor}`,
             backgroundColor: bg,
             transition: "background .12s, outline .12s",
             cursor: "pointer",
             // Ensure consistent box model to prevent layout shifts
             boxSizing: "border-box",
             // Use outline instead of box-shadow to prevent layout shifts
-            outline: isPlayhead ? `2px solid ${COLORS.playhead}` : "none",
+            outline: isPlayhead ? `2px solid ${playheadColor}` : "none",
             outlineOffset: "-2px",
             // Prevent any layout shifts
             margin: 0,
@@ -99,7 +105,7 @@ function TrackRow({
             onClick={() => onToggleStep(rowIndex, stepIndex)}
             style={style}
             onMouseEnter={(e) => {
-                if (!active) e.currentTarget.style.backgroundColor = COLORS.hover;
+                if (!active) e.currentTarget.style.backgroundColor = "#EEF2F7";
             }}
             onMouseLeave={(e) => {
                 if (!active) e.currentTarget.style.backgroundColor = bg;

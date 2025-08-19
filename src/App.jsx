@@ -2,12 +2,18 @@ import React, { useState, useEffect, useRef } from "react";
 import Controls from "./components/Controls.jsx";
 import SequencerGrid from "./components/SequencerGrid.jsx";
 import audioManager from "./components/AudioManager.js";
+import ThemeSelector from "./components/ThemeSelector.jsx";
+import { useTheme } from "./components/ThemeContext.jsx";
+import { useSliderTheme } from "./components/useSliderTheme.js";
 import "./App.css";
 
 // helper to build an empty 16-step row
 const emptyRow = () => Array(16).fill(0);
 
 export default function App() {
+  const { currentTheme, themes } = useTheme();
+  const currentThemeData = themes[currentTheme];
+  useSliderTheme(); // Apply dynamic slider styling
   const [tracks, setTracks] = useState([
     { id: "kick",  label: "Kick",  steps: emptyRow(), volume: 75, pitch: 50 },
     { id: "snare", label: "Snare", steps: emptyRow(), volume: 75, pitch: 50 },
@@ -445,22 +451,23 @@ export default function App() {
     <div 
       className="min-h-screen w-full flex items-center justify-center p-4"
       style={{
-        background: 'linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 50%, #0a0a0a 100%)',
+        background: currentThemeData.background,
         backgroundAttachment: 'fixed',
         backgroundSize: 'cover'
       }}
     >
       {/* Main Card Container */}
-      <div className="w-full max-w-6xl bg-neutral-900/95 backdrop-blur-sm rounded-2xl border border-neutral-700 shadow-2xl overflow-hidden">
+      <div className={`w-full max-w-6xl ${currentThemeData.cardBg} backdrop-blur-sm rounded-2xl border ${currentThemeData.borderColor} shadow-2xl overflow-hidden`}>
         {/* Header */}
-        <div className="bg-neutral-800/90 border-b border-neutral-700 p-6">
+        <div className={`${currentThemeData.headerBg} border-b ${currentThemeData.borderColor} p-6`}>
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <h1 className="text-3xl font-bold text-cyan-400">Beat Maker Lite</h1>
-              <span className="text-sm text-gray-400">Online Drum Machine</span>
+            <div className="flex items-center gap-4 flex-1 min-w-0">
+              <h1 className={`text-4xl beat-maker-title flex-shrink-0`} data-theme={currentTheme}>Beat Maker Lite</h1>
+              <span className={`text-sm ${currentThemeData.textSecondary} flex-shrink-0`}>Online Drum Machine</span>
             </div>
-            <div className="flex items-center gap-4">
-              <div className="text-sm text-gray-400">by Cornil Patidar</div>
+            <div className="flex items-center gap-4 flex-shrink-0">
+              <ThemeSelector />
+              <div className={`text-sm ${currentThemeData.textSecondary} hidden sm:block`}>by Cornil Patidar</div>
             </div>
           </div>
         </div>
@@ -495,8 +502,8 @@ export default function App() {
         </div>
 
         {/* Footer */}
-        <div className="bg-neutral-800/90 border-t border-neutral-700 p-4">
-          <div className="flex items-center justify-center gap-6 text-sm text-gray-400">
+        <div className={`${currentThemeData.headerBg} border-t ${currentThemeData.borderColor} p-4`}>
+          <div className={`flex items-center justify-center gap-6 text-sm ${currentThemeData.textSecondary}`}>
             <span>© 2025 Beat Maker Lite</span>
             <span>•</span>
             <span>React Drum Machine</span>

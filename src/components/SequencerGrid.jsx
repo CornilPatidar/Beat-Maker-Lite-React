@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import TrackRow from "./TrackRow.jsx";
 import { COLS, GAP, MIN_STEP, MAX_STEP, LABEL_W, SLIDER_PANEL_W } from "./constants.js";
+import { useTheme } from "./ThemeContext.jsx";
 
 export default function SequencerGrid({
   tracks,
@@ -9,6 +10,8 @@ export default function SequencerGrid({
   onPitchChange,
   currentStep = -1,
 }) {
+  const { currentTheme, themes } = useTheme();
+  const currentThemeData = themes[currentTheme];
   const containerRef = useRef(null);
   const [containerWidth, setContainerWidth] = useState(0);
   const [stepPx, setStepPx] = useState(MAX_STEP);
@@ -42,7 +45,7 @@ export default function SequencerGrid({
   return (
     <div
       ref={containerRef}
-      className="p-4 bg-neutral-800 rounded-xl border border-neutral-700"
+      className={`p-4 ${currentThemeData.headerBg} rounded-xl border ${currentThemeData.borderColor}`}
       style={{ overflowX: "hidden" }}
     >
       {/* Top group markers 1..4 (each spans 4 steps) */}
@@ -78,7 +81,7 @@ export default function SequencerGrid({
                   alignItems: "center",
                   justifyContent: "center",
                   backgroundColor: isActive ? "#1e1e1e" : "transparent",
-                  color: isActive ? "#ffffff" : "#00ffff",
+                  color: isActive ? "#ffffff" : currentThemeData.sliderThumb,
                   transition: "background-color 0.12s, color 0.12s"
                 }}
               >
@@ -89,8 +92,8 @@ export default function SequencerGrid({
         </div>
         {/* Right panel headers */}
         <div className="flex gap-6" style={{ width: SLIDER_PANEL_W }}>
-          <div className="w-24 text-center text-xs text-gray-400">Volume</div>
-          <div className="w-24 text-center text-xs text-gray-400">Pitch</div>
+          <div className={`w-24 text-center text-xs ${currentThemeData.textSecondary}`}>Volume</div>
+          <div className={`w-24 text-center text-xs ${currentThemeData.textSecondary}`}>Pitch</div>
         </div>
       </div>
 
@@ -141,7 +144,7 @@ export default function SequencerGrid({
                   alignItems: "center",
                   justifyContent: "center",
                   backgroundColor: isActive ? "#1e1e1e" : "transparent",
-                  color: isActive ? "#ffffff" : "#00ffff",
+                  color: isActive ? "#ffffff" : currentThemeData.sliderThumb,
                   transition: "background-color 0.12s, color 0.12s"
                 }}
               >
