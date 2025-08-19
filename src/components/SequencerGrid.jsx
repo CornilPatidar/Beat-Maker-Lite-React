@@ -42,7 +42,7 @@ export default function SequencerGrid({
   return (
     <div
       ref={containerRef}
-      className="p-4 bg-neutral-900 rounded-xl border border-neutral-800"
+      className="p-4 bg-neutral-800 rounded-xl border border-neutral-700"
       style={{ overflowX: "hidden" }}
     >
       {/* Top group markers 1..4 (each spans 4 steps) */}
@@ -60,19 +60,32 @@ export default function SequencerGrid({
             flexWrap: "nowrap",
           }}
         >
-          {[1, 2, 3, 4].map((n) => (
-            <div
-              key={n}
-              className="text-xs text-teal-400 select-none"
-              style={{ 
-                width: `calc(var(--step) * 4 + var(--gap) * 3)`,
-                flexShrink: 0,
-                textAlign: "center"
-              }}
-            >
-              {n}
-            </div>
-          ))}
+          {[1, 2, 3, 4].map((n) => {
+            const groupStart = (n - 1) * 4;
+            const groupEnd = groupStart + 3;
+            const isActive = currentStep >= groupStart && currentStep <= groupEnd;
+            
+            return (
+              <div
+                key={n}
+                className="text-xs select-none rounded"
+                style={{ 
+                  width: `calc(var(--step) * 4 + var(--gap) * 3)`,
+                  height: "var(--step)",
+                  flexShrink: 0,
+                  textAlign: "center",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  backgroundColor: isActive ? "#1e1e1e" : "transparent",
+                  color: isActive ? "#ffffff" : "#00ffff",
+                  transition: "background-color 0.12s, color 0.12s"
+                }}
+              >
+                {n}
+              </div>
+            );
+          })}
         </div>
         {/* Right panel headers */}
         <div className="flex gap-6" style={{ width: SLIDER_PANEL_W }}>
@@ -113,19 +126,29 @@ export default function SequencerGrid({
             flexWrap: "nowrap",
           }}
         >
-          {Array.from({ length: COLS }, (_, i) => (
-            <div 
-              key={i} 
-              className="text-xs text-teal-400 select-none pt-1"
-              style={{
-                width: "var(--step)",
-                flexShrink: 0,
-                textAlign: "center"
-              }}
-            >
-              {i + 1}
-            </div>
-          ))}
+          {Array.from({ length: COLS }, (_, i) => {
+            const isActive = currentStep === i;
+            return (
+              <div 
+                key={i} 
+                className="text-xs select-none pt-1 rounded"
+                style={{
+                  width: "var(--step)",
+                  height: "var(--step)",
+                  flexShrink: 0,
+                  textAlign: "center",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  backgroundColor: isActive ? "#1e1e1e" : "transparent",
+                  color: isActive ? "#ffffff" : "#00ffff",
+                  transition: "background-color 0.12s, color 0.12s"
+                }}
+              >
+                {i + 1}
+              </div>
+            );
+          })}
         </div>
         <div style={{ width: SLIDER_PANEL_W }} />
       </div>
