@@ -132,13 +132,202 @@ export default function App() {
     setTracks(prev => prev.map(t => ({ ...t, steps: emptyRow() })));
   };
 
+  // Professional drum patterns for randomization
+  const professionalPatterns = [
+    // Hip-Hop Patterns
+    {
+      name: "Classic Hip-Hop",
+      tracks: [
+        { id: "kick", label: "Kick", steps: [1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0], volume: 75, pitch: 50 },
+        { id: "snare", label: "Snare", steps: [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0], volume: 75, pitch: 50 },
+        { id: "openhat", label: "Open hat", steps: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], volume: 60, pitch: 50 },
+        { id: "closedhat", label: "Closed hat", steps: [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1], volume: 70, pitch: 50 },
+        { id: "cowbell", label: "Cowbell", steps: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], volume: 75, pitch: 50 },
+      ]
+    },
+    {
+      name: "Trap Style",
+      tracks: [
+        { id: "kick", label: "Kick", steps: [1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0], volume: 80, pitch: 50 },
+        { id: "snare", label: "Snare", steps: [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0], volume: 75, pitch: 50 },
+        { id: "openhat", label: "Open hat", steps: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], volume: 60, pitch: 50 },
+        { id: "closedhat", label: "Closed hat", steps: [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1], volume: 65, pitch: 50 },
+        { id: "cowbell", label: "Cowbell", steps: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], volume: 75, pitch: 50 },
+      ]
+    },
+    // EDM Patterns
+    {
+      name: "Four on the Floor",
+      tracks: [
+        { id: "kick", label: "Kick", steps: [1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0], volume: 80, pitch: 50 },
+        { id: "snare", label: "Snare", steps: [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0], volume: 75, pitch: 50 },
+        { id: "openhat", label: "Open hat", steps: [0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0], volume: 70, pitch: 50 },
+        { id: "closedhat", label: "Closed hat", steps: [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1], volume: 65, pitch: 50 },
+        { id: "cowbell", label: "Cowbell", steps: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], volume: 75, pitch: 50 },
+      ]
+    },
+    {
+      name: "Progressive House",
+      tracks: [
+        { id: "kick", label: "Kick", steps: [1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0], volume: 75, pitch: 50 },
+        { id: "snare", label: "Snare", steps: [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0], volume: 70, pitch: 50 },
+        { id: "openhat", label: "Open hat", steps: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], volume: 60, pitch: 50 },
+        { id: "closedhat", label: "Closed hat", steps: [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1], volume: 60, pitch: 50 },
+        { id: "cowbell", label: "Cowbell", steps: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], volume: 75, pitch: 50 },
+      ]
+    },
+    // Funk Patterns
+    {
+      name: "Funky Groove",
+      tracks: [
+        { id: "kick", label: "Kick", steps: [1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0], volume: 75, pitch: 50 },
+        { id: "snare", label: "Snare", steps: [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0], volume: 75, pitch: 50 },
+        { id: "openhat", label: "Open hat", steps: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], volume: 60, pitch: 50 },
+        { id: "closedhat", label: "Closed hat", steps: [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1], volume: 70, pitch: 50 },
+        { id: "cowbell", label: "Cowbell", steps: [1,0,0,1,0,0,1,0,0,0,1,0,0,0,1,0], volume: 80, pitch: 50 },
+      ]
+    },
+    {
+      name: "James Brown Style",
+      tracks: [
+        { id: "kick", label: "Kick", steps: [1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0], volume: 75, pitch: 50 },
+        { id: "snare", label: "Snare", steps: [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0], volume: 75, pitch: 50 },
+        { id: "openhat", label: "Open hat", steps: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], volume: 60, pitch: 50 },
+        { id: "closedhat", label: "Closed hat", steps: [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1], volume: 65, pitch: 50 },
+        { id: "cowbell", label: "Cowbell", steps: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], volume: 75, pitch: 50 },
+      ]
+    },
+    // Latin Patterns
+    {
+      name: "Salsa Groove",
+      tracks: [
+        { id: "kick", label: "Kick", steps: [1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0], volume: 75, pitch: 50 },
+        { id: "snare", label: "Snare", steps: [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0], volume: 75, pitch: 50 },
+        { id: "openhat", label: "Open hat", steps: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], volume: 60, pitch: 50 },
+        { id: "closedhat", label: "Closed hat", steps: [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1], volume: 70, pitch: 50 },
+        { id: "cowbell", label: "Cowbell", steps: [1,0,0,1,0,0,1,0,0,0,1,0,0,0,1,0], volume: 80, pitch: 50 },
+      ]
+    },
+    {
+      name: "Bossa Nova",
+      tracks: [
+        { id: "kick", label: "Kick", steps: [1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0], volume: 70, pitch: 50 },
+        { id: "snare", label: "Snare", steps: [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0], volume: 70, pitch: 50 },
+        { id: "openhat", label: "Open hat", steps: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], volume: 60, pitch: 50 },
+        { id: "closedhat", label: "Closed hat", steps: [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1], volume: 65, pitch: 50 },
+        { id: "cowbell", label: "Cowbell", steps: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], volume: 75, pitch: 50 },
+      ]
+    },
+    // Rock Patterns
+    {
+      name: "Rock Beat",
+      tracks: [
+        { id: "kick", label: "Kick", steps: [1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0], volume: 80, pitch: 50 },
+        { id: "snare", label: "Snare", steps: [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0], volume: 75, pitch: 50 },
+        { id: "openhat", label: "Open hat", steps: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], volume: 60, pitch: 50 },
+        { id: "closedhat", label: "Closed hat", steps: [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1], volume: 70, pitch: 50 },
+        { id: "cowbell", label: "Cowbell", steps: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], volume: 75, pitch: 50 },
+      ]
+    },
+    {
+      name: "Punk Rock",
+      tracks: [
+        { id: "kick", label: "Kick", steps: [1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0], volume: 85, pitch: 50 },
+        { id: "snare", label: "Snare", steps: [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0], volume: 80, pitch: 50 },
+        { id: "openhat", label: "Open hat", steps: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], volume: 60, pitch: 50 },
+        { id: "closedhat", label: "Closed hat", steps: [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1], volume: 75, pitch: 50 },
+        { id: "cowbell", label: "Cowbell", steps: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], volume: 75, pitch: 50 },
+      ]
+    },
+    // Jazz Patterns
+    {
+      name: "Jazz Ride",
+      tracks: [
+        { id: "kick", label: "Kick", steps: [1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0], volume: 70, pitch: 50 },
+        { id: "snare", label: "Snare", steps: [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0], volume: 70, pitch: 50 },
+        { id: "openhat", label: "Open hat", steps: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], volume: 60, pitch: 50 },
+        { id: "closedhat", label: "Closed hat", steps: [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1], volume: 65, pitch: 50 },
+        { id: "cowbell", label: "Cowbell", steps: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], volume: 75, pitch: 50 },
+      ]
+    },
+    // Reggae Patterns
+    {
+      name: "Reggae One Drop",
+      tracks: [
+        { id: "kick", label: "Kick", steps: [1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0], volume: 75, pitch: 50 },
+        { id: "snare", label: "Snare", steps: [0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0], volume: 75, pitch: 50 },
+        { id: "openhat", label: "Open hat", steps: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], volume: 60, pitch: 50 },
+        { id: "closedhat", label: "Closed hat", steps: [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1], volume: 70, pitch: 50 },
+        { id: "cowbell", label: "Cowbell", steps: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], volume: 75, pitch: 50 },
+      ]
+    },
+    // Breakbeat Patterns
+    {
+      name: "Breakbeat",
+      tracks: [
+        { id: "kick", label: "Kick", steps: [1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0], volume: 75, pitch: 50 },
+        { id: "snare", label: "Snare", steps: [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0], volume: 75, pitch: 50 },
+        { id: "openhat", label: "Open hat", steps: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], volume: 60, pitch: 50 },
+        { id: "closedhat", label: "Closed hat", steps: [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1], volume: 70, pitch: 50 },
+        { id: "cowbell", label: "Cowbell", steps: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], volume: 75, pitch: 50 },
+      ]
+    },
+    // Minimal Patterns
+    {
+      name: "Minimal Techno",
+      tracks: [
+        { id: "kick", label: "Kick", steps: [1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0], volume: 75, pitch: 50 },
+        { id: "snare", label: "Snare", steps: [0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0], volume: 70, pitch: 50 },
+        { id: "openhat", label: "Open hat", steps: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], volume: 60, pitch: 50 },
+        { id: "closedhat", label: "Closed hat", steps: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], volume: 65, pitch: 50 },
+        { id: "cowbell", label: "Cowbell", steps: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], volume: 75, pitch: 50 },
+      ]
+    },
+    // Complex Patterns
+    {
+      name: "Complex Groove",
+      tracks: [
+        { id: "kick", label: "Kick", steps: [1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0], volume: 75, pitch: 50 },
+        { id: "snare", label: "Snare", steps: [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0], volume: 75, pitch: 50 },
+        { id: "openhat", label: "Open hat", steps: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], volume: 60, pitch: 50 },
+        { id: "closedhat", label: "Closed hat", steps: [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1], volume: 70, pitch: 50 },
+        { id: "cowbell", label: "Cowbell", steps: [1,0,0,1,0,0,1,0,0,0,1,0,0,0,1,0], volume: 80, pitch: 50 },
+      ]
+    },
+    // Experimental Patterns
+    {
+      name: "Polyrhythm",
+      tracks: [
+        { id: "kick", label: "Kick", steps: [1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1], volume: 75, pitch: 50 },
+        { id: "snare", label: "Snare", steps: [0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0], volume: 75, pitch: 50 },
+        { id: "openhat", label: "Open hat", steps: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], volume: 60, pitch: 50 },
+        { id: "closedhat", label: "Closed hat", steps: [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1], volume: 70, pitch: 50 },
+        { id: "cowbell", label: "Cowbell", steps: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], volume: 75, pitch: 50 },
+      ]
+    }
+  ];
+
   const onRandomize = () => {
-    setTracks(prev =>
-      prev.map(t => ({
-        ...t,
-        steps: t.steps.map(() => (Math.random() < 0.25 ? 1 : 0)), // ~25% fill
-      }))
-    );
+    // Select a random professional pattern
+    const randomPattern = professionalPatterns[Math.floor(Math.random() * professionalPatterns.length)];
+    
+    // Apply the pattern with some randomization for variety
+    setTracks(prev => prev.map((track, index) => {
+      const patternTrack = randomPattern.tracks[index];
+      if (!patternTrack) return track;
+      
+      // Add some randomization to the pattern (10% chance to flip each step)
+      const randomizedSteps = patternTrack.steps.map(step => 
+        Math.random() < 0.1 ? (step === 1 ? 0 : 1) : step
+      );
+      
+      return {
+        ...track,
+        steps: randomizedSteps,
+        volume: patternTrack.volume + (Math.random() * 10 - 5), // ±5 volume variation
+        pitch: patternTrack.pitch + (Math.random() * 10 - 5)    // ±5 pitch variation
+      };
+    }));
   };
 
   // Demo patterns
@@ -271,7 +460,7 @@ export default function App() {
               <span className="text-sm text-gray-400">Online Drum Machine</span>
             </div>
             <div className="flex items-center gap-4">
-              <div className="text-sm text-gray-400">by React Developer</div>
+              <div className="text-sm text-gray-400">by Cornil Patidar</div>
             </div>
           </div>
         </div>
