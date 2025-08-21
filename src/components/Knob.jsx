@@ -56,7 +56,7 @@ function Knob({
   const rotation = ((value - min) / (max - min)) * 270 - 135;
 
   return (
-    <div className="flex items-start gap-3 select-none">
+    <div className="flex items-start gap-2 sm:gap-3 select-none">
       <div className="flex flex-col items-center">
         <div
           style={{ width: size, height: size }}
@@ -82,7 +82,7 @@ function Knob({
       </div>
       <div className="flex flex-col items-start">
         <div className="text-xs text-white font-mono">{value}</div>
-        <div className="text-xs text-gray-400 mt-1">{label}</div>
+        <div className="text-xs text-gray-400 mt-1 hidden sm:block">{label}</div>
       </div>
     </div>
   );

@@ -19,10 +19,10 @@ const ThemeSelector = () => {
   return (
     <button
       onClick={handleThemeClick}
-      className={`flex items-center justify-center w-10 h-10 rounded-lg border transition-all duration-200 ${currentThemeData.borderColor} ${currentThemeData.buttonBg} ${currentThemeData.buttonHover} text-white shadow-lg hover:scale-105`}
+      className={`flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-lg border transition-all duration-200 ${currentThemeData.borderColor} ${currentThemeData.buttonBg} ${currentThemeData.buttonHover} text-white shadow-lg hover:scale-105`}
       title={`${currentThemeData.name} - Click for ${themes[nextTheme].name}`}
     >
-      <span className="text-lg">{currentThemeData.icon}</span>
+      <span className="text-base sm:text-lg">{currentThemeData.icon}</span>
     </button>
   );
 };

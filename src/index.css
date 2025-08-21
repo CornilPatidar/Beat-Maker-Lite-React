@@ -48,4 +48,23 @@ code, pre, .font-mono {
 /* Optional: force dark UI defaults; remove if you want system-controlled */
 :root { color-scheme: dark; }
 
+/* Responsive viewport improvements */
+@media (max-width: 640px) {
+  html {
+    font-size: 14px; /* Slightly smaller base font for mobile */
+  }
+}
+
+/* Improve mobile touch interactions */
+@media (max-width: 640px) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Better touch targets */
+  button, input, select, a {
+    touch-action: manipulation;
+  }
+}
+
 /* DO NOT add custom a/button/h1 styles here—use Tailwind classes in JSX */

@@ -45,14 +45,14 @@ export default function SequencerGrid({
   return (
     <div
       ref={containerRef}
-      className={`p-4 ${currentThemeData.headerBg} rounded-xl border ${currentThemeData.borderColor}`}
-      style={{ overflowX: "hidden" }}
+      className={`p-2 sm:p-4 ${currentThemeData.headerBg} rounded-xl border ${currentThemeData.borderColor}`}
+      style={{ overflowX: "auto" }}
     >
       {/* Top group markers 1..4 (each spans 4 steps) */}
-      <div className="flex items-center mb-1">
-        <div style={{ width: LABEL_W }} className="mr-4" />
+      <div className="flex items-center mb-1 min-w-max">
+        <div style={{ width: LABEL_W }} className="mr-2 sm:mr-4" />
         <div
-          className="mr-6 shrink-0"
+          className="mr-4 sm:mr-6 shrink-0"
           style={{
             ...gridVars,
             width: "var(--gridw)",
@@ -91,9 +91,9 @@ export default function SequencerGrid({
           })}
         </div>
         {/* Right panel headers */}
-        <div className="flex gap-6" style={{ width: SLIDER_PANEL_W }}>
-          <div className="w-24 text-center text-xs text-white">Volume</div>
-          <div className="w-24 text-center text-xs text-white">Pitch</div>
+        <div className="flex gap-4 sm:gap-6" style={{ width: SLIDER_PANEL_W }}>
+          <div className="w-20 sm:w-24 text-center text-xs text-white">Volume</div>
+          <div className="w-20 sm:w-24 text-center text-xs text-white">Pitch</div>
         </div>
       </div>
 
@@ -115,10 +115,10 @@ export default function SequencerGrid({
       ))}
 
       {/* Bottom 1..16 markers */}
-      <div className="flex items-center mt-1">
-        <div style={{ width: LABEL_W }} className="mr-4" />
+      <div className="flex items-center mt-1 min-w-max">
+        <div style={{ width: LABEL_W }} className="mr-2 sm:mr-4" />
         <div
-          className="mr-6 shrink-0"
+          className="mr-4 sm:mr-6 shrink-0"
           style={{
             ...gridVars,
             width: "var(--gridw)",

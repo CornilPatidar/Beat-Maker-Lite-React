@@ -55,7 +55,7 @@ export default function App() {
     toneAudioManager.setBPM(bpm);
   }, [bpm]);
 
-  // Tone.js sequencer logic
+  // Tone.js sequencer logic - only restart when play/pause state changes
   useEffect(() => {
     if (isPlaying) {
       toneAudioManager.startSequencer(tracks, (step) => {
@@ -71,7 +71,14 @@ export default function App() {
         toneAudioManager.stopSequencer();
       }
     };
-  }, [isPlaying, tracks]);
+  }, [isPlaying]); // Only depend on isPlaying, not tracks
+
+  // Update tracks in real-time when they change
+  useEffect(() => {
+    if (isPlaying) {
+      toneAudioManager.updateTracks(tracks);
+    }
+  }, [tracks, isPlaying]);
 
   const onToggleStep = (rowIndex, stepIndex) => {
     setTracks(prev => {
@@ -277,6 +284,9 @@ export default function App() {
   ];
 
   const onRandomize = () => {
+    // Set tempo to 120 BPM automatically
+    setBpm(120);
+    
     // Select a random professional pattern
     const randomPattern = professionalPatterns[Math.floor(Math.random() * professionalPatterns.length)];
     
@@ -417,7 +427,7 @@ export default function App() {
 
   return (
     <div 
-      className="min-h-screen w-full flex items-center justify-center p-4"
+      className="min-h-screen w-full flex items-center justify-center p-2 sm:p-4"
       style={{
         backgroundImage: currentThemeData.background,
         backgroundAttachment: 'fixed',
@@ -425,41 +435,41 @@ export default function App() {
       }}
     >
       {/* Main Card Container */}
-      <div className={`w-full max-w-6xl ${currentThemeData.cardBg} backdrop-blur-sm rounded-2xl border ${currentThemeData.borderColor} shadow-2xl overflow-hidden`}>
+      <div className={`w-full max-w-6xl ${currentThemeData.cardBg} backdrop-blur-sm rounded-xl sm:rounded-2xl border ${currentThemeData.borderColor} shadow-2xl overflow-hidden`}>
         {/* Header */}
-        <div className={`${currentThemeData.headerBg} border-b ${currentThemeData.borderColor} p-6`}>
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4 flex-1 min-w-0">
+        <div className={`${currentThemeData.headerBg} border-b ${currentThemeData.borderColor} p-3 sm:p-6`}>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 flex-1 min-w-0">
               <h1 
-                className={`text-4xl beat-maker-title flex-shrink-0`} 
+                className={`text-2xl sm:text-3xl lg:text-4xl beat-maker-title flex-shrink-0 text-center sm:text-left`} 
                 data-theme={currentTheme}
                 style={{ fontFamily: currentThemeData.titleFont }}
               >
                 Beat Maker Lite
               </h1>
-              <span className={`text-sm ${currentThemeData.textSecondary} flex-shrink-0`}>Online Drum Machine</span>
+              <span className={`text-xs sm:text-sm ${currentThemeData.textSecondary} flex-shrink-0 text-center sm:text-left`}>Online Drum Machine</span>
             </div>
-            <div className="flex items-center gap-4 flex-shrink-0">
+            <div className="flex items-center justify-center sm:justify-end gap-2 sm:gap-4 flex-shrink-0">
               <ThemeSelector />
               <a
                 href="https://github.com/CornilPatidar"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`flex items-center justify-center w-10 h-10 rounded-lg border transition-all duration-200 ${currentThemeData.borderColor} bg-gray-800 hover:bg-gray-700 text-white shadow-lg hover:scale-105`}
+                className={`flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-lg border transition-all duration-200 ${currentThemeData.borderColor} bg-gray-800 hover:bg-gray-700 text-white shadow-lg hover:scale-105`}
                 title="Visit GitHub Profile"
               >
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                 </svg> 
                 {/* github icon */}
               </a>
-              <div className={`text-sm ${currentThemeData.textSecondary} hidden sm:block`}>by Cornil Patidar</div>
+              <div className={`text-xs sm:text-sm ${currentThemeData.textSecondary} hidden sm:block`}>by Cornil Patidar</div>
             </div>
           </div>
         </div>
 
         {/* Main Content */}
-        <div className="p-6">
+        <div className="p-3 sm:p-6">
           <Controls
             isPlaying={isPlaying}
             bpm={bpm}
@@ -483,9 +493,9 @@ export default function App() {
             demoOptions={demoOptions}
           />
 
-          <div className="flex gap-4 lg:flex-nowrap flex-wrap">
+          <div className="flex flex-col lg:flex-row gap-4">
             {/* main column that holds SequencerGrid */}
-            <section className="flex-1 min-w-0">
+            <section className="flex-1 min-w-0 order-2 lg:order-1">
               <SequencerGrid
                 tracks={tracks}
                 onToggleStep={onToggleStep}
@@ -496,19 +506,19 @@ export default function App() {
             </section>
 
             {/* right rail / sidebar */}
-            <aside className="w-72 shrink-0">
+            <aside className="w-full lg:w-72 shrink-0 order-1 lg:order-2">
               <EffectsPanel audioManager={toneAudioManager} />
             </aside>
           </div>
         </div>
 
         {/* Footer */}
-        <div className={`${currentThemeData.headerBg} border-t ${currentThemeData.borderColor} p-4`}>
-          <div className={`flex items-center justify-center gap-6 text-sm ${currentThemeData.textSecondary}`}>
+        <div className={`${currentThemeData.headerBg} border-t ${currentThemeData.borderColor} p-3 sm:p-4`}>
+          <div className={`flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 text-xs sm:text-sm ${currentThemeData.textSecondary}`}>
             <span>© 2025 Beat Maker Lite</span>
-            <span>•</span>
+            <span className="hidden sm:inline">•</span>
             <span>React Drum Machine</span>
-            <span>•</span>
+            <span className="hidden sm:inline">•</span>
             <span>Made with ❤️</span>
           </div>
         </div>

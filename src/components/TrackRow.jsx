@@ -46,10 +46,10 @@ function TrackRow({
   };
 
   return (
-    <div className="flex items-center mb-2">
+    <div className="flex items-center mb-2 min-w-max">
       {/* Left label */}
       <div
-        className="text-right text-sm font-medium text-white mr-4"
+        className="text-right text-xs sm:text-sm font-medium text-white mr-2 sm:mr-4"
         style={{ width: LABEL_W }}
       >
         {label}
@@ -57,7 +57,7 @@ function TrackRow({
 
       {/* 16-step grid */}
       <div
-        className="mr-6 shrink-0"
+        className="mr-4 sm:mr-6 shrink-0"
         style={{
           ...gridVars,
           width: "var(--gridw)",
@@ -119,18 +119,18 @@ function TrackRow({
       </div>
 
       {/* Knobs panel */}
-      <div className="flex gap-8 items-center" style={{ width: SLIDER_PANEL_W }}>
+      <div className="flex gap-4 sm:gap-8 items-center" style={{ width: SLIDER_PANEL_W }}>
         <Knob
           value={volume}
           onChange={(value) => onVolumeChange(rowIndex, value)}
           label="Volume"
-          size={36}
+          size={32}
         />
         <Knob
           value={pitch}
           onChange={(value) => onPitchChange(rowIndex, value)}
           label="Pitch"
-          size={36}
+          size={32}
         />
       </div>
     </div>

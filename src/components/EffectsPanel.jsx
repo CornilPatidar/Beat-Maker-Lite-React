@@ -34,18 +34,18 @@ function EffectsPanel({ audioManager }) {
   return (
     <div
       className={`w-full min-w-0 max-w-full box-border 
-                  p-4 rounded-lg border 
+                  p-3 sm:p-4 rounded-lg border 
                   ${currentThemeData.bgSecondary} ${currentThemeData.border}`}
     >
-      <h3 className={`text-lg font-semibold mb-4 ${currentThemeData.textPrimary}`}>
+      <h3 className={`text-base sm:text-lg font-semibold mb-3 sm:mb-4 ${currentThemeData.textPrimary}`}>
         Effects
       </h3>
       
-      <div className="space-y-4">
+      <div className="space-y-3 sm:space-y-4">
         {/* Reverb */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <label className={`text-sm font-medium ${currentThemeData.textSecondary}`}>
+            <label className={`text-xs sm:text-sm font-medium ${currentThemeData.textSecondary}`}>
               Reverb
             </label>
             <input
@@ -79,7 +79,7 @@ function EffectsPanel({ audioManager }) {
         {/* Distortion */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <label className={`text-sm font-medium ${currentThemeData.textSecondary}`}>
+            <label className={`text-xs sm:text-sm font-medium ${currentThemeData.textSecondary}`}>
               Distortion
             </label>
             <input
@@ -113,7 +113,7 @@ function EffectsPanel({ audioManager }) {
         {/* Delay */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <label className={`text-sm font-medium ${currentThemeData.textSecondary}`}>
+            <label className={`text-xs sm:text-sm font-medium ${currentThemeData.textSecondary}`}>
               Delay
             </label>
             <input

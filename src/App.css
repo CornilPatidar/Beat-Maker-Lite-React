@@ -199,3 +199,67 @@ body {
   }
 }
 
+/* Responsive improvements */
+@media (max-width: 640px) {
+  /* Improve touch targets on mobile */
+  button, input[type="range"], select {
+    min-height: 44px;
+  }
+  
+  /* Better spacing for mobile */
+  .min-w-max {
+    min-width: max-content;
+  }
+  
+  /* Improve scrollbar visibility on mobile */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
+}
+
+/* Improve range slider appearance on mobile */
+@media (max-width: 640px) {
+  input[type="range"] {
+    height: 8px;
+  }
+  
+  input[type="range"]::-webkit-slider-thumb {
+    height: 20px;
+    width: 20px;
+  }
+  
+  input[type="range"]::-moz-range-thumb {
+    height: 20px;
+    width: 20px;
+  }
+}
+
+/* Prevent text selection on interactive elements */
+button, input, select, .select-none {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Improve focus states for accessibility */
+button:focus, input:focus, select:focus {
+  outline: 2px solid #06b6d4;
+  outline-offset: 2px;
+}
+
