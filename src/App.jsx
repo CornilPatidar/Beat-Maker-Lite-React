@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import Controls from "./components/Controls.jsx";
 import SequencerGrid from "./components/SequencerGrid.jsx";
-import audioManager from "./components/AudioManager.js";
+import toneAudioManager from "./components/ToneAudioManager.js";
+import EffectsPanel from "./components/EffectsPanel.jsx";
 import ThemeSelector from "./components/ThemeSelector.jsx";
 import { useTheme } from "./components/ThemeContext.jsx";
 import { useSliderTheme } from "./components/useSliderTheme.js";
@@ -38,77 +39,39 @@ export default function App() {
   // Demo options
   const demoOptions = ["No Demo", "Hip-Hop", "Groove", "EDM", "Boom-Bap", "Afrobeat", "West Coast Bounce", "Lo-Fi Chill"];
 
-  // Initialize audio manager
+  // Initialize Tone.js audio manager
   useEffect(() => {
-    audioManager.init();
+    toneAudioManager.init();
   }, []);
 
   // Load kit sounds when kit changes
   useEffect(() => {
-    audioManager.loadKit(selectedKit);
+    toneAudioManager.loadKit(selectedKit);
   }, [selectedKit]);
 
-  // Update BPM ref when BPM changes
+  // Update BPM when it changes
   useEffect(() => {
     bpmRef.current = bpm;
+    toneAudioManager.setBPM(bpm);
   }, [bpm]);
 
-  // Sequencer logic with audio playback
+  // Tone.js sequencer logic
   useEffect(() => {
     if (isPlaying) {
-      const stepInterval = (60 / bpmRef.current) * 1000 / 4; // 16th note timing
-      intervalRef.current = setInterval(() => {
-        setCurrentStep(prev => {
-          const next = prev + 1;
-          const currentStep = next >= 16 ? 0 : next;
-          
-          // Play sounds for active steps
-          tracks.forEach((track, trackIndex) => {
-            if (track.steps[currentStep]) {
-              // Map track IDs to sound names
-              let soundName;
-              switch (track.id) {
-                case 'kick':
-                  soundName = 'kick';
-                  break;
-                case 'snare':
-                  soundName = 'snare';
-                  break;
-                case 'openhat':
-                  soundName = 'open-hat';
-                  break;
-                case 'closedhat':
-                  soundName = 'closed-hat';
-                  break;
-                case 'cowbell':
-                  soundName = 'cowbell';
-                  break;
-                default:
-                  soundName = track.id.toLowerCase().replace(' ', '-');
-              }
-              const volume = track.volume / 100;
-              const pitch = 0.5 + (track.pitch / 100) * 1.5; // Pitch range: 0.5 to 2.0
-              audioManager.playSound(soundName, volume, pitch);
-            }
-          });
-          
-          return currentStep;
-        });
-      }, stepInterval);
+      toneAudioManager.startSequencer(tracks, (step) => {
+        setCurrentStep(step);
+      });
     } else {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-        intervalRef.current = null;
-      }
+      toneAudioManager.stopSequencer();
       setCurrentStep(-1);
     }
 
     return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
+      if (isPlaying) {
+        toneAudioManager.stopSequencer();
       }
     };
-  }, [isPlaying, tracks]); // Add tracks to dependencies
+  }, [isPlaying, tracks]);
 
   const onToggleStep = (rowIndex, stepIndex) => {
     setTracks(prev => {
@@ -497,13 +460,20 @@ export default function App() {
             demoOptions={demoOptions}
           />
 
-          <SequencerGrid
-            tracks={tracks}
-            onToggleStep={onToggleStep}
-            onVolumeChange={onVolumeChange}
-            onPitchChange={onPitchChange}
-            currentStep={currentStep}
-          />
+          <div className="flex gap-6">
+            <div className="flex-1">
+              <SequencerGrid
+                tracks={tracks}
+                onToggleStep={onToggleStep}
+                onVolumeChange={onVolumeChange}
+                onPitchChange={onPitchChange}
+                currentStep={currentStep}
+              />
+            </div>
+            <div className="w-64 flex-shrink-0">
+              <EffectsPanel audioManager={toneAudioManager} />
+            </div>
+          </div>
         </div>
 
         {/* Footer */}

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import audioManager from "./AudioManager.js";
+import toneAudioManager from "./ToneAudioManager.js";
 import { useTheme } from "./ThemeContext.jsx";
 
 /**
@@ -70,8 +70,8 @@ function Controls({
   };
 
   const handleTogglePlay = () => {
-    // Resume audio context on first play (required by browsers)
-    audioManager.resume();
+    // Initialize Tone.js on first play (required by browsers)
+    toneAudioManager.init();
     onTogglePlay();
   };
 
@@ -168,6 +168,20 @@ function Controls({
             </option>
           ))}
         </select>
+      </div>
+
+      {/* Master Volume Control */}
+      <div className="flex items-center gap-2">
+        <span className={`text-sm ${currentThemeData.textSecondary}`}>Volume</span>
+        <input
+          type="range"
+          min="0"
+          max="100"
+          defaultValue="70"
+          onChange={(e) => toneAudioManager.setMasterVolume(e.target.value / 100)}
+          className="w-20"
+          title="Master Volume"
+        />
       </div>
 
       {/* Clear Button - Removes all drum hits from all tracks */}

@@ -10,7 +10,8 @@ A modern, web-based drum machine built with React. Create beats with an intuitiv
 - **5 Drum Tracks**: Kick, Snare, Open Hat, Closed Hat, Cowbell
 - **6 Themes**: Default, Underground, Forest, Ocean, R&B, Rock
 - **Professional Patterns**: 8 demo patterns + AI-powered randomize
-- **Real-time Audio**: Web Audio API with volume/pitch control
+- **Real-time Audio**: Tone.js-powered audio engine with professional effects
+- **Audio Effects**: Reverb, distortion, and delay with real-time controls
 - **Responsive Design**: Works on desktop and mobile
 
 ## 🚀 Quick Start
@@ -25,14 +26,21 @@ npm run dev
 ## 🛠️ Built With
 
 - **React 18** + **Vite** + **Tailwind CSS**
-- **Web Audio API** for real-time audio processing
+- **Tone.js** for professional audio synthesis and effects
 - **React Context** for theme management
+
+## 🎵 New Features
+
+- **Tone.js Integration**: ✅ Advanced synthesis and effects
+- **Professional Effects**: ✅ Reverb, distortion, and delay
+- **Master Volume Control**: ✅ Global volume adjustment
+- **Sample-Accurate Timing**: ✅ Precise sequencer timing
 
 ## 🎵 Coming Soon
 
-- **Tone.js Integration**: Advanced synthesis and effects
 - **More Drum Kits**: Additional sample packs
 - **Pattern Export**: Save and share custom patterns
+- **MIDI Support**: External device integration
 
 ## 👨‍💻 Author
 
