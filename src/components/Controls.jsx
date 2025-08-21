@@ -90,7 +90,7 @@ function Controls({
       {/* BPM Control Section - Tempo adjustment with spin buttons */}
       <div className="flex items-center gap-2">
         {/* Label for the BPM control */}
-        <span className={`text-sm ${currentThemeData.textSecondary}`}>Tempo</span>
+        <span className="text-sm text-white">Tempo</span>
         
         {/* Spin button container */}
         <div className={`flex items-center border ${currentThemeData.borderColor} rounded-md bg-neutral-700`}>
@@ -98,7 +98,7 @@ function Controls({
           <button
             onClick={handleBpmDecrement}
             disabled={bpm <= 40}
-            className={`px-2 py-1 ${currentThemeData.textSecondary} hover:text-white hover:bg-neutral-600 disabled:text-gray-500 disabled:hover:bg-neutral-700 transition-colors`}
+            className="px-2 py-1 text-white hover:text-white hover:bg-neutral-600 disabled:text-gray-500 disabled:hover:bg-neutral-700 transition-colors"
             title="Decrease tempo"
           >
             ▼
@@ -114,7 +114,7 @@ function Controls({
             onChange={handleBpmInputChange}
             onBlur={handleBpmInputBlur}
             onKeyDown={handleBpmInputKeyDown}
-            className={`w-16 px-2 py-1 text-center ${currentThemeData.textSecondary} bg-transparent border-none outline-none`}
+            className="w-16 px-2 py-1 text-center text-white bg-transparent border-none outline-none"
             title="Tempo (40-240 BPM)"
           />
           
@@ -122,7 +122,7 @@ function Controls({
           <button
             onClick={handleBpmIncrement}
             disabled={bpm >= 240}
-            className={`px-2 py-1 ${currentThemeData.textSecondary} hover:text-white hover:bg-neutral-600 disabled:text-gray-500 disabled:hover:bg-neutral-700 transition-colors`}
+            className="px-2 py-1 text-white hover:text-white hover:bg-neutral-600 disabled:text-gray-500 disabled:hover:bg-neutral-700 transition-colors"
             title="Increase tempo"
           >
             ▲
@@ -130,16 +130,16 @@ function Controls({
         </div>
         
         {/* BPM label */}
-        <span className={`text-sm ${currentThemeData.textSecondary}`}>BPM</span>
+        <span className="text-sm text-white">BPM</span>
       </div>
 
       {/* Kit Selection */}
       <div className="flex items-center gap-2">
-        <span className={`text-sm ${currentThemeData.textSecondary}`}>Kit</span>
+        <span className="text-sm text-white">Kit</span>
         <select
           value={selectedKit}
           onChange={(e) => onKitChange(e.target.value)}
-          className={`px-3 py-1 text-sm ${currentThemeData.textSecondary} bg-neutral-700 border ${currentThemeData.borderColor} rounded-md outline-none focus:border-${currentThemeData.textPrimary.replace('text-', '')}`}
+          className="px-3 py-1 text-sm text-white bg-neutral-700 border border-neutral-600 rounded-md outline-none focus:border-cyan-400"
         >
           {kitOptions.map((option) => (
             <option 
@@ -156,11 +156,11 @@ function Controls({
 
       {/* Demos Selection */}
       <div className="flex items-center gap-2">
-        <span className={`text-sm ${currentThemeData.textSecondary}`}>Demos</span>
+        <span className="text-sm text-white">Demos</span>
         <select
           value={selectedDemo}
           onChange={(e) => onDemoChange(e.target.value)}
-          className={`px-3 py-1 text-sm ${currentThemeData.textSecondary} bg-neutral-700 border ${currentThemeData.borderColor} rounded-md outline-none focus:border-${currentThemeData.textPrimary.replace('text-', '')}`}
+          className="px-3 py-1 text-sm text-white bg-neutral-700 border border-neutral-600 rounded-md outline-none focus:border-cyan-400"
         >
           {demoOptions.map((option) => (
             <option key={option} value={option} className="bg-neutral-700 text-gray-300">
@@ -172,7 +172,7 @@ function Controls({
 
       {/* Master Volume Control */}
       <div className="flex items-center gap-2">
-        <span className={`text-sm ${currentThemeData.textSecondary}`}>Volume</span>
+        <span className="text-sm text-white">Volume</span>
         <input
           type="range"
           min="0"
@@ -187,7 +187,7 @@ function Controls({
       {/* Clear Button - Removes all drum hits from all tracks */}
       <button
         onClick={onClear}
-        className={`px-3 py-2 rounded-md bg-neutral-700 hover:bg-neutral-600 ${currentThemeData.textSecondary} border ${currentThemeData.borderColor} transition-colors`}
+        className="px-3 py-2 rounded-md bg-neutral-700 hover:bg-neutral-600 text-white border border-neutral-600 transition-colors"
       >
         Clear
       </button>
@@ -195,7 +195,7 @@ function Controls({
       {/* Randomize Button - Adds random drum hits to create patterns */}
       <button
         onClick={onRandomize}
-        className={`px-3 py-2 rounded-md bg-neutral-700 hover:bg-neutral-600 ${currentThemeData.textSecondary} border ${currentThemeData.borderColor} transition-colors`}
+        className="px-3 py-2 rounded-md bg-neutral-700 hover:bg-neutral-600 text-white border border-neutral-600 transition-colors"
       >
         Randomize
       </button>

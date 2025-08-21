@@ -92,8 +92,8 @@ export default function SequencerGrid({
         </div>
         {/* Right panel headers */}
         <div className="flex gap-6" style={{ width: SLIDER_PANEL_W }}>
-          <div className={`w-24 text-center text-xs ${currentThemeData.textSecondary}`}>Volume</div>
-          <div className={`w-24 text-center text-xs ${currentThemeData.textSecondary}`}>Pitch</div>
+          <div className="w-24 text-center text-xs text-white">Volume</div>
+          <div className="w-24 text-center text-xs text-white">Pitch</div>
         </div>
       </div>
 

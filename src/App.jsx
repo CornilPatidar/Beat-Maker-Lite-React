@@ -293,8 +293,8 @@ export default function App() {
       return {
         ...track,
         steps: randomizedSteps,
-        volume: patternTrack.volume + (Math.random() * 10 - 5), // ±5 volume variation
-        pitch: patternTrack.pitch + (Math.random() * 10 - 5)    // ±5 pitch variation
+        volume: Math.round(patternTrack.volume + (Math.random() * 10 - 5)), // ±5 volume variation, rounded to integer
+        pitch: Math.round(patternTrack.pitch + (Math.random() * 10 - 5))    // ±5 pitch variation, rounded to integer
       };
     }));
   };
@@ -419,7 +419,7 @@ export default function App() {
     <div 
       className="min-h-screen w-full flex items-center justify-center p-4"
       style={{
-        background: currentThemeData.background,
+        backgroundImage: currentThemeData.background,
         backgroundAttachment: 'fixed',
         backgroundSize: 'cover'
       }}

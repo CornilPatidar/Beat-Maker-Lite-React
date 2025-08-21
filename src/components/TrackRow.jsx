@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { COLS, GAP, MIN_STEP, MAX_STEP, LABEL_W, SLIDER_PANEL_W, COLORS } from "./constants.js";
 import { useTheme } from "./ThemeContext.jsx";
+import Knob from "./Knob.jsx";
 
 /**
  * Row uses CSS vars from parent:
@@ -48,7 +49,7 @@ function TrackRow({
     <div className="flex items-center mb-2">
       {/* Left label */}
       <div
-        className={`text-right text-sm font-medium ${currentThemeData.textSecondary} mr-4`}
+        className="text-right text-sm font-medium text-white mr-4"
         style={{ width: LABEL_W }}
       >
         {label}
@@ -117,28 +118,20 @@ function TrackRow({
 
       </div>
 
-      {/* Sliders panel */}
-      <div className="flex gap-6" style={{ width: SLIDER_PANEL_W }}>
-        <div className="w-24">
-          <input
-            type="range"
-            min="0"
-            max="100"
-            value={volume}
-            onChange={(e) => onVolumeChange(rowIndex, Number(e.target.value))}
-            className="w-full outline-none"
-          />
-        </div>
-        <div className="w-24">
-          <input
-            type="range"
-            min="0"
-            max="100"
-            value={pitch}
-            onChange={(e) => onPitchChange(rowIndex, Number(e.target.value))}
-            className="w-full outline-none"
-          />
-        </div>
+      {/* Knobs panel */}
+      <div className="flex gap-8 items-center" style={{ width: SLIDER_PANEL_W }}>
+        <Knob
+          value={volume}
+          onChange={(value) => onVolumeChange(rowIndex, value)}
+          label="Volume"
+          size={36}
+        />
+        <Knob
+          value={pitch}
+          onChange={(value) => onPitchChange(rowIndex, value)}
+          label="Pitch"
+          size={36}
+        />
       </div>
     </div>
   );
