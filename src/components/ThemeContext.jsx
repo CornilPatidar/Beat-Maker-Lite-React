@@ -17,7 +17,7 @@ export const themes = {
     sliderTrack: "#374151",
     sliderThumb: "#06b6d4",
     sliderThumbBorder: "#0891b2",
-    titleFont: "Audiowide", // Logo font - keep as is
+    titleFont: "'Orbitron', sans-serif", // Modern, sleek font for default
     titleGradient: "linear-gradient(135deg, #06b6d4 0%, #0891b2 50%, #0e7490 100%)",
     titleGlow: "rgba(6, 182, 212, 0.5)"
   },
@@ -35,7 +35,7 @@ export const themes = {
     sliderTrack: "#2a2a2a",
     sliderThumb: "#00ff41",
     sliderThumbBorder: "#00cc33",
-    titleFont: "Audiowide", // Logo font - keep as is
+    titleFont: "'VT323', monospace", // Retro terminal font for underground
     titleGradient: "linear-gradient(135deg, #00ff41 0%, #00cc33 50%, #009900 100%)",
     titleGlow: "rgba(0, 255, 65, 0.6)"
   },
@@ -53,7 +53,7 @@ export const themes = {
     sliderTrack: "#2d4a2d",
     sliderThumb: "#8bc34a",
     sliderThumbBorder: "#689f38",
-    titleFont: "Audiowide", // Logo font - keep as is
+    titleFont: "'Righteous', cursive", // Organic, flowing font for forest
     titleGradient: "linear-gradient(135deg, #8bc34a 0%, #689f38 50%, #4caf50 100%)",
     titleGlow: "rgba(139, 195, 74, 0.5)"
   },
@@ -71,7 +71,7 @@ export const themes = {
     sliderTrack: "#1a3a4a",
     sliderThumb: "#00bcd4",
     sliderThumbBorder: "#0097a7",
-    titleFont: "Audiowide", // Logo font - keep as is
+    titleFont: "'Rajdhani', sans-serif", // Fluid, wave-like font for ocean
     titleGradient: "linear-gradient(135deg, #00bcd4 0%, #0097a7 50%, #006064 100%)",
     titleGlow: "rgba(0, 188, 212, 0.6)"
   },
@@ -89,7 +89,7 @@ export const themes = {
     sliderTrack: "#2a1a3a",
     sliderThumb: "#ffd700",
     sliderThumbBorder: "#ffb300",
-    titleFont: "Audiowide", // Logo font - keep as is
+    titleFont: "'Fredoka One', cursive", // Playful, rounded font for R&B
     titleGradient: "linear-gradient(135deg, #ffd700 0%, #ffb300 50%, #ff8f00 100%)",
     titleGlow: "rgba(255, 215, 0, 0.6)"
   },
@@ -107,7 +107,7 @@ export const themes = {
     sliderTrack: "#2a1a1a",
     sliderThumb: "#dc2626",
     sliderThumbBorder: "#b91c1c",
-    titleFont: "Audiowide", // Logo font - keep as is
+    titleFont: "'Audiowide', sans-serif", // Bold, pixelated font for rock
     titleGradient: "linear-gradient(135deg, #dc2626 0%, #b91c1c 50%, #991b1b 100%)",
     titleGlow: "rgba(220, 38, 38, 0.6)"
   }

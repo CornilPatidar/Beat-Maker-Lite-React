@@ -92,6 +92,35 @@ body {
   font-family: 'Chakra Petch', sans-serif;
 }
 
+/* Additional theme fonts */
+.font-exo2 {
+  font-family: 'Exo 2', sans-serif;
+}
+
+.font-vt323 {
+  font-family: 'VT323', monospace;
+}
+
+.font-righteous {
+  font-family: 'Righteous', cursive;
+}
+
+.font-rajdhani {
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.font-fredoka-one {
+  font-family: 'Fredoka One', cursive;
+}
+
+.font-press-start-2p {
+  font-family: 'Press Start 2P', cursive;
+}
+
+.font-share-tech-mono {
+  font-family: 'Share Tech Mono', monospace;
+}
+
 /* Beat Maker Lite title styling */
 .beat-maker-title {
   font-weight: 400;
@@ -106,9 +135,8 @@ body {
   background-repeat: no-repeat;
 }
 
-/* Theme-specific title styles - All use Audiowide for consistency */
+/* Theme-specific title styles - Fonts are now applied via inline styles */
 .beat-maker-title[data-theme="default"] {
-  font-family: 'Audiowide', cursive;
   text-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
   background: linear-gradient(135deg, #06b6d4 0%, #0891b2 50%, #0e7490 100%);
   -webkit-background-clip: text;
@@ -117,7 +145,6 @@ body {
 }
 
 .beat-maker-title[data-theme="underground"] {
-  font-family: 'Audiowide', cursive;
   text-shadow: 0 0 20px rgba(0, 255, 65, 0.6);
   background: linear-gradient(135deg, #00ff41 0%, #00cc33 50%, #009900 100%);
   -webkit-background-clip: text;
@@ -126,7 +153,6 @@ body {
 }
 
 .beat-maker-title[data-theme="forest"] {
-  font-family: 'Audiowide', cursive;
   text-shadow: 0 0 20px rgba(139, 195, 74, 0.5);
   background: linear-gradient(135deg, #8bc34a 0%, #689f38 50%, #4caf50 100%);
   -webkit-background-clip: text;
@@ -135,7 +161,6 @@ body {
 }
 
 .beat-maker-title[data-theme="ocean"] {
-  font-family: 'Audiowide', cursive;
   text-shadow: 0 0 20px rgba(0, 188, 212, 0.6);
   background: linear-gradient(135deg, #00bcd4 0%, #0097a7 50%, #006064 100%);
   -webkit-background-clip: text;
@@ -144,7 +169,6 @@ body {
 }
 
 .beat-maker-title[data-theme="rnb"] {
-  font-family: 'Audiowide', cursive;
   text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
   background: linear-gradient(135deg, #ffd700 0%, #ffb300 50%, #ff8f00 100%);
   -webkit-background-clip: text;
@@ -153,9 +177,8 @@ body {
 }
 
 .beat-maker-title[data-theme="rock"] {
-  font-family: 'Audiowide', cursive;
-  text-shadow: 0 0 20px rgba(255, 68, 68, 0.6);
-  background: linear-gradient(135deg, #ff4444 0%, #cc3333 50%, #aa2222 100%);
+  text-shadow: 0 0 20px rgba(220, 38, 38, 0.6);
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 50%, #991b1b 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

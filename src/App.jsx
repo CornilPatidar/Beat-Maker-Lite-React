@@ -307,6 +307,7 @@ export default function App() {
         // Kick: steps 1, 7, 11 (indices 0, 6, 10)
         // Snare: steps 5, 13 (indices 4, 12)
         // Hi-Hats: every step with variation
+        setBpm(120);
         setTracks([
           { id: "kick", label: "Kick", steps: [1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0], volume: 75, pitch: 50 },
           { id: "snare", label: "Snare", steps: [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0], volume: 75, pitch: 50 },
@@ -321,6 +322,7 @@ export default function App() {
         // Snare: steps 5, 13 (indices 4, 12)
         // Cowbell: steps 1, 4, 7, 11, 15 (indices 0, 3, 6, 10, 14)
         // Closed Hat: steps 3, 6, 10, 14 (indices 2, 5, 9, 13)
+        setBpm(120);
         setTracks([
           { id: "kick", label: "Kick", steps: [1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0], volume: 75, pitch: 50 },
           { id: "snare", label: "Snare", steps: [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0], volume: 75, pitch: 50 },
@@ -335,6 +337,7 @@ export default function App() {
         // Snare/Clap: steps 5, 13 (indices 4, 12)
         // Open Hat: steps 3, 7, 11, 15 (indices 2, 6, 10, 14)
         // Closed Hat: every offbeat (2, 4, 6, 8, 10, 12, 14, 16) (indices 1, 3, 5, 7, 9, 11, 13, 15)
+        setBpm(120);
         setTracks([
           { id: "kick", label: "Kick", steps: [1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0], volume: 80, pitch: 50 },
           { id: "snare", label: "Snare", steps: [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0], volume: 75, pitch: 50 },
@@ -349,6 +352,7 @@ export default function App() {
         // Snare: steps 5, 13 (indices 4, 12)
         // Open Hat: step 12 (index 11)
         // Closed Hat: steps 2,3,4,5,6,7,8,10,12,13,16 (indices 1,2,3,4,5,6,7,9,11,12,15)
+        setBpm(120);
         setTracks([
           { id: "kick", label: "Kick", steps: [1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0], volume: 75, pitch: 50 },
           { id: "snare", label: "Snare", steps: [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0], volume: 75, pitch: 50 },
@@ -364,6 +368,7 @@ export default function App() {
         // Closed Hat: steps 2, 6, 10, 12, 16 (indices 1, 5, 9, 11, 15)
         // Open Hat: steps 8, 15 (indices 7, 14)
         // Cowbell: steps 1, 5, 11 (indices 0, 4, 10)
+        setBpm(120);
         setTracks([
           { id: "kick", label: "Kick", steps: [1,0,0,1,0,0,1,0,0,0,1,0,0,1,0,0], volume: 75, pitch: 50 },
           { id: "snare", label: "Snare", steps: [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0], volume: 75, pitch: 50 },
@@ -425,7 +430,13 @@ export default function App() {
         <div className={`${currentThemeData.headerBg} border-b ${currentThemeData.borderColor} p-6`}>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4 flex-1 min-w-0">
-              <h1 className={`text-4xl beat-maker-title flex-shrink-0`} data-theme={currentTheme}>Beat Maker Lite</h1>
+              <h1 
+                className={`text-4xl beat-maker-title flex-shrink-0`} 
+                data-theme={currentTheme}
+                style={{ fontFamily: currentThemeData.titleFont }}
+              >
+                Beat Maker Lite
+              </h1>
               <span className={`text-sm ${currentThemeData.textSecondary} flex-shrink-0`}>Online Drum Machine</span>
             </div>
             <div className="flex items-center gap-4 flex-shrink-0">
@@ -460,8 +471,9 @@ export default function App() {
             demoOptions={demoOptions}
           />
 
-          <div className="flex gap-6">
-            <div className="flex-1">
+          <div className="flex gap-4 lg:flex-nowrap flex-wrap">
+            {/* main column that holds SequencerGrid */}
+            <section className="flex-1 min-w-0">
               <SequencerGrid
                 tracks={tracks}
                 onToggleStep={onToggleStep}
@@ -469,10 +481,12 @@ export default function App() {
                 onPitchChange={onPitchChange}
                 currentStep={currentStep}
               />
-            </div>
-            <div className="w-64 flex-shrink-0">
+            </section>
+
+            {/* right rail / sidebar */}
+            <aside className="w-72 shrink-0">
               <EffectsPanel audioManager={toneAudioManager} />
-            </div>
+            </aside>
           </div>
         </div>
 

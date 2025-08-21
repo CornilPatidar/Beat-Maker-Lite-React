@@ -32,7 +32,11 @@ function EffectsPanel({ audioManager }) {
   };
 
   return (
-    <div className={`p-4 rounded-lg border ${currentThemeData.bgSecondary} ${currentThemeData.border}`}>
+    <div
+      className={`w-full min-w-0 max-w-full box-border 
+                  p-4 rounded-lg border 
+                  ${currentThemeData.bgSecondary} ${currentThemeData.border}`}
+    >
       <h3 className={`text-lg font-semibold mb-4 ${currentThemeData.textPrimary}`}>
         Effects
       </h3>
